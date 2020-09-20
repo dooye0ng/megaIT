@@ -26,6 +26,8 @@
 >		sNum = Integer.toString(num);
 >		
 >		System.out.println("16진수 FF는 10진수로 " + sNum + "입니다"> );
+>   // System.out.println(0xff);
+>
 >	}
 > }
 > ```
@@ -43,6 +45,8 @@
 >		
 >		System.out.println("이니셜: C D Y");
 >		System.out.println("ASCII: " + ascii_C + " " + ascii_D + " " + ascii_Y);
+>   // int c = 'C', d = 'D', y = 'Y';
+>   // System.out.printf("%d %d %d", c, d, y);
 >
 >	}
 > }
