@@ -1,4 +1,4 @@
-# Day06 Homework  
+# Day07 Homework  
 ### 문제 1. 30 ~ 100 까지의 모든 정수의 합을 출력하세요  
 ```java
 public class Homework_1 {
