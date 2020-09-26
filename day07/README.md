@@ -6,7 +6,7 @@ public class Homework_1 {
 
 		int sum = 0;
 		
-		for(int i=30; i<=1000; ++i) {
+		for(int i=30; i<=100; ++i) {
 			sum += i;
 		}
 		
@@ -15,7 +15,7 @@ public class Homework_1 {
 }
 ```
 ```
-30~100까지의 합: 500065
+30~100까지의 합: 4615
 ```
 
 ### 문제 2. 1 ~ 45의 랜덤수를 총 6개 출력하세요
