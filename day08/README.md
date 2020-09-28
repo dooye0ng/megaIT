@@ -163,7 +163,7 @@ public class Homework_ha34{
 		System.out.println();
 		
 		// (ㄷ): 역순 재배치
-		for(int i=0; i<num; ++i) {
+		for(int i=0; i<num/2; ++i) {
 			int left = i, right = num - (i+1);
 			
 			int tmp = nums[left];
