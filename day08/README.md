@@ -156,7 +156,7 @@ public class Homework_ha34{
 		}
 		
 		// (ㄴ): 역순 출력
-		System.out.print("(ㄴ): ");
+		System.out.print("(ㄴ) 출력만 : ");
 		for(int i=num; i>0; --i) {
 			System.out.print(nums[i-1] + " ");
 		}
@@ -170,7 +170,7 @@ public class Homework_ha34{
 			nums[left] = nums[right];
 			nums[right] = tmp;
 		}
-		System.out.print("(ㄷ): ");
+		System.out.print("(ㄷ) 실제 배열 배치 : ");
 		for(int i=0; i<num; ++i) {
 			System.out.print(nums[i] + " ");
 		}
@@ -180,8 +180,8 @@ public class Homework_ha34{
 ```
 배열의 크기를 입력해주세요: 8
 (ㄱ): 0 0 0 0 0 0 0 0 
-(ㄴ): 7 6 5 4 3 2 1 0 
-(ㄷ): 7 6 5 4 3 2 1 0 
+(ㄴ) 출력만 : 7 6 5 4 3 2 1 0 
+(ㄷ) 실제 배열 배치 : 7 6 5 4 3 2 1 0 
 ```
 ### 추가문제 하-5: 사용자에게 배열의 칸 개수를 입력 받고, 해당 정수의 크기만큼 String형 배열을 생성하고, 사용자에게 입력받은 단어들을 순차적으로 배열에 저장하세요.
 ```java
