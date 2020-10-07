@@ -197,7 +197,7 @@ public class Student {
 	
 	
 	boolean isValid(int score) {
-		if(kr >= 0 && kr <= 100) {
+		if(score>= 0 && score<= 100) {
 			return true;
 		}
 		
