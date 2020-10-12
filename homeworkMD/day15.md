@@ -192,3 +192,10 @@ Author : 과학 선생님
 Publisher : 학교
 Subject : 과학
 ```
+
+### "is-A" 와 "has-A" 관계
+is-A 관계는 말 그대로 " ~이 A 이다" 라는 것이 성립되는 관계이고, has-A 관계는 "~이 A를 가지고(포함하고) 있다"라는 것이 성립되는 관계이다.  
+
+예를 들어, Person과 Student가 있을 때 *Person is Student*는 성립이 안되고, *Student is Person*은 성립이 된다. 이렇듯 B is A 가 성립할 때, B가 A를 상속할 수 있다.  
+
+그리고 Pencilcase과 Pen이 있을 때, *Pencilcase is Pen* 혹은 *Pen is Pencilcase*은 모두 성립하지 않는다. 하지만 *Pencilcase has Pen*은 성립한다. 이와 같이 Pencilcase 클래스는 Pen 클래스를 포함할 수 있고, 이는 상속과는 무관하다.
