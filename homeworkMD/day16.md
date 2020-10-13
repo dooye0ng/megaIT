@@ -198,10 +198,9 @@ public class Homework {
 		for(Unit u : units) {
 			if(u.isAlive()) {
 				System.out.println("Player " + u.getId() + "(이)가 승리했습니다 !");
+				continue;
 			}
-			else {
-				System.out.println("Player " + u.getId() + "(이)가 패배했습니다...");
-			}
+			System.out.println("Player " + u.getId() + "(이)가 패배했습니다...");
 		}
 		
 	}
