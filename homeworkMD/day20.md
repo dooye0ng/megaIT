@@ -116,7 +116,7 @@ public class Quiz01 {
 	}
 	
 	private static void manageUser(ArrayList<User> users, boolean in) {
-		System.out.println("--- 로그인 ---");
+		System.out.println(in ? "--- 로그인 ---" : "--- 회원탈퇴 ---");
 		
 		System.out.print("id : ");
 		String id = sc.next();
