@@ -312,7 +312,7 @@ pw : happyJava##
 0. 종료
 
 메뉴 선택 : 4
---- 로그인 ---
+--- 회원탈퇴 ---
 id : megaZZang
 pw : happyJava##
 회원탈퇴 성공!
