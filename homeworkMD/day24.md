@@ -13,8 +13,6 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
-import day11.basic.MyMethod;
-
 class WordBook {
 	private HashMap<String, String> wordMap;
 	private static Scanner sc = new Scanner(System.in);
