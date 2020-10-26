@@ -1,6 +1,6 @@
 
 # Day25 Homework  
-### Quiz01.java
+### > Quiz01.java
 ```java
 package com.mega.homework;
 
@@ -16,6 +16,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Quiz01 {
+	private static final String PLUS = "+";
+	private static final String MINUS = "-";
+	private static final String DIVIDE = "/";
+	private static final String MULTIPLE = "*";
+	
 	public static void main(String[] args) {
 		String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "0", " "};
 		String[] cals = {"+", "-", "*", "/", "="};
@@ -98,23 +103,23 @@ public class Quiz01 {
 				int y = Integer.parseInt(exp[2]);
 				
 				switch (exp[1]) {
-				case "+":
+				case PLUS:
 					JOptionPane.showMessageDialog(calculator, String.valueOf(x+y));
 					break;
-				case "-":
+				case MINUS:
 					JOptionPane.showMessageDialog(calculator, String.valueOf(x-y));
 					break;
-				case "*":
+				case MULTIPLE:
 					JOptionPane.showMessageDialog(calculator, String.valueOf(x*y));
 					break;
-				case "/":
+				case DIVIDE:
 					JOptionPane.showMessageDialog(calculator, String.valueOf(x/y));
 					break;
 				default:
 					JOptionPane.showMessageDialog(calculator, "Error");
 				}
 				
-				// "="일 경우에 다시 초기화
+				// "="일 경우 초기화
 				for(int i=0; i<exp.length; ++i) {
 					exp[i] = "0";
 				}
