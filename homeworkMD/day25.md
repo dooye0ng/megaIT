@@ -114,7 +114,7 @@ public class Quiz01 {
 					JOptionPane.showMessageDialog(calculator, "Error");
 				}
 				
-				// "=" �� ��� �ٽ� 0���� �ʱ�ȭ
+				// "="일 경우에 다시 초기화
 				for(int i=0; i<exp.length; ++i) {
 					exp[i] = "0";
 				}
