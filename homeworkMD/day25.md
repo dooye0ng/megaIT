@@ -134,3 +134,5 @@ public class Quiz01 {
 	}
 }
 ```
+### Result
+![Calculator](../img/day25.jpg)
