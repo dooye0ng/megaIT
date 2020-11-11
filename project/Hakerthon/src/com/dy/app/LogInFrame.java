@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class LogInFrame extends JFrame {
-	private static final int APP_WIDTH = 500;
-	private static final int APP_HEIGHT = 600;
+	private static final int APP_WIDTH = 550;
+	private static final int APP_HEIGHT = 500;
 	private JPanel titlePanel, loginPanel;
 	private JTextField titleField, idField, pwField;
 	private JLabel idLabel, pwLabel;
@@ -93,8 +93,6 @@ public class LogInFrame extends JFrame {
 	public void closeWindow() {
 		dispose();
 		System.out.println("끄기");
-		revalidate();
-		repaint();
 	}
 	
 	public void setBtns() {
@@ -117,6 +115,7 @@ public class LogInFrame extends JFrame {
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "로그인 실패");
+						
 					}
 				} catch (SQLException e1) {
 					e1.printStackTrace();

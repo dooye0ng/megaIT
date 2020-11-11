@@ -28,6 +28,17 @@ public class AppDao {
 		return instance;
 	}
 	
+	public String getImgNameByRegdate(String regdate) throws SQLException {
+//		System.out.println(regdate);
+		String sql = "SELECT img_name FROM app_products WHERE regdate = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, regdate);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		return rs.getString(1);
+	}
+	
 	public ArrayList<ProductVo> getAllProducts() throws SQLException {
 		String sql = "SELECT user_id, name, price, content, regdate FROM app_products";
 		ArrayList<ProductVo> list = new ArrayList<ProductVo>();
@@ -114,7 +125,14 @@ public class AppDao {
 		
 		return rs.getInt(1);
 	}
-	
+	public String getIdByRegdate(String regdate) throws SQLException {
+		String sql = "SELECT user_id FROM app_products WHERE regdate = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, regdate);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		return rs.getString(1);
+	}
 	public int updateUserProducts(String id) throws SQLException {
 		String sql = "UPDATE app_users SET products = ? WHERE id = ?";
 		int count = getUserProducts(id);
@@ -127,16 +145,80 @@ public class AppDao {
 	
 	
 	public int registerProduct(ProductVo productVo) throws SQLException {
-		String sql = "INSERT INTO app_products(user_id, name, price, content) VALUES(?, ?, ?, ?)";
+		String sql = "INSERT INTO app_products(user_id, name, price, content, img_name) VALUES(?, ?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, productVo.getUser_id());
 		ps.setString(2, productVo.getName());
 		ps.setInt(3, productVo.getPrice());
 		ps.setString(4, productVo.getContent());
+		ps.setString(5, productVo.getImg_name());
 		int row = ps.executeUpdate();
 		updateUserProducts(productVo.getUser_id());
 		
 		return row;
+	}
+	
+	public int deleteProductByRegdate(String regdate) throws SQLException {
+		String sql = "DELETE FROM app_products WHERE regdate = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, regdate);
+		return ps.executeUpdate();
+	}
+	public int countUpSoldById(String id) throws SQLException {
+		String sql = "UPDATE app_users SET sold = sold + 1 WHERE id = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, id);
+		return ps.executeUpdate();
+	}
+	
+	public int getTotalSoldById(String id) throws SQLException {
+		String sql = "SELECT sold FROM app_users WHERE id = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, id);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		return rs.getInt(1);
+	}
+	
+	public UserVo updateUserVoById(String id) throws SQLException {
+		UserVo userVo = new UserVo();
+		String sql = "SELECT no, id, pw, rating, sold FROM app_users WHERE id = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, id);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			userVo.setNo(rs.getInt("no"));
+			userVo.setId(rs.getString("id"));
+			userVo.setPassword(rs.getString("pw"));
+			userVo.setRating(rs.getString("rating"));
+			userVo.setSold(rs.getInt("sold"));
+		}
+		return userVo;
+	}
+	
+	public int updateRatingById(String id) throws SQLException{
+		int totalSold = getTotalSoldById(id);
+		
+		String level;
+		if(totalSold <= 5) {
+			return 0;
+		}
+		
+		if(totalSold > 50) {
+			level = "King";
+		}
+		else if(totalSold > 20) {
+			level = "Adult";
+		}
+		else{
+			level = "Newbie";
+		}
+		
+		String sql = "UPDATE app_users SET rating = ? WHERE id = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, level);
+		ps.setString(2, id);
+		return ps.executeUpdate();
 	}
 	
 	public ArrayList<ProductVo> getProductsById(String id) throws SQLException{

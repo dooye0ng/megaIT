@@ -9,6 +9,14 @@ public class ProductVo implements Serializable{
 	private int price; 
 	private String content;
 	private String reg_date;
+	private String img_name;
+	
+	public String getImg_name() {
+		return img_name;
+	}
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
+	}
 	public int getNo() {
 		return no;
 	}

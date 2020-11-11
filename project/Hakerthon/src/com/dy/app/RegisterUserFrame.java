@@ -77,8 +77,15 @@ public class RegisterUserFrame extends JFrame{
 		panels[PW_2].add(new JLabel("PW CHECK"));
 		panels[PW_2].add(fields[PW_2]);
 		
+		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		panels[BTN].add(cancelBtn);
 		panels[BTN].add(regBtn);
-		
 	}
 	
 	public void setFields() {
@@ -136,7 +143,6 @@ public class RegisterUserFrame extends JFrame{
 				String id = fields[ID].getText().trim();
 				String pw1 = fields[PW_1].getText().trim();
 				String pw2 = fields[PW_2].getText().trim();
-				
 				registerUser(id, pw1, pw2);
 			}
 		});

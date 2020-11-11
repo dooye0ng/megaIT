@@ -3,6 +3,7 @@ package com.dy.app;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,13 +32,13 @@ public class ProfileFrame extends JFrame{
 	private Socket soc;
 	private ProfileFrame window;
 	
-	public ProfileFrame(UserVo userVo, AppDao userDao, Socket soc) {
+	public ProfileFrame(UserVo userVo, AppDao appDao, Socket soc) {
 		this.window = this;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(APP_WIDTH, APP_HEIGHT);
 		setLocationRelativeTo(null);
 		setSocket(soc);
-		setUserDao(userDao);
+		setUserDao(appDao);
 		setUserVo(userVo);
 		setLayout(new BorderLayout());
 		setPanels();
@@ -127,13 +128,68 @@ public class ProfileFrame extends JFrame{
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		itemPanel.add(contentScroll, BorderLayout.CENTER);
 		
+		// SOUTH
+		JPanel southPanel = new JPanel();
+		southPanel.setLayout(new FlowLayout());
+		JButton soldBtn, delBtn;
+		soldBtn = new JButton("SOLD");
+		soldBtn.setName(product.getReg_date());
+		System.out.println(product.getNo());
+		soldBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton btn = (JButton)e.getSource();
+				try {
+					String id = appDao.getIdByRegdate(btn.getName());
+					appDao.deleteProductByRegdate(btn.getName());
+					appDao.updateUserProducts(id);
+					appDao.countUpSoldById(id);
+					appDao.updateRatingById(id);
+					JOptionPane.showMessageDialog(null, "판매완료!");
+					refreshWindow();
+				} catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		delBtn = new JButton("DELETE ITEM");
+		delBtn.setName(product.getReg_date());
+		delBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton btn = (JButton)e.getSource();
+				try {
+					String id = appDao.getIdByRegdate(btn.getName());
+					appDao.deleteProductByRegdate(btn.getName());
+					appDao.updateUserProducts(id);
+					JOptionPane.showMessageDialog(null, "삭제완료!");
+					refreshWindow();
+				} catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		southPanel.add(soldBtn);
+		southPanel.add(delBtn);
+		itemPanel.add(southPanel, BorderLayout.SOUTH);
+		
+		
 		itemPanel.setPreferredSize(new Dimension(300, 200));
 		return itemPanel;
+	}
+	
+	public void refreshWindow() {
+		dispose();
+		new ProfileFrame(userVo, appDao, soc);
 	}
 	
 	public void setProductsPanel() throws SQLException {
 		int row = appDao.getUserProducts(userVo.getId());
 		contentPanel = new JPanel();
+		if(row < 5) {
+			row = 5;
+		}
 		contentPanel.setLayout(new GridLayout(row, 0));
 		
 		ArrayList<ProductVo> productList = appDao.getProductsById(userVo.getId());
@@ -149,19 +205,31 @@ public class ProfileFrame extends JFrame{
 		userInfoPanel = new JPanel();
 		userInfoPanel.setLayout(new FlowLayout());
 		// set fields
-		nameField = new JTextField(userVo.getId());
+		nameField = new JTextField( userVo.getId());
 		nameField.setEditable(false);
+		nameField.setBorder(null);
+		nameField.setFont(new Font("Arial", Font.BOLD, 15));
 		ratingField = new JTextField(userVo.getRating());
 		ratingField.setEditable(false);
-		productCountField = new JTextField(String.valueOf(userVo.getProducts()));
+		ratingField.setBorder(null);
+		ratingField.setFont(new Font("Arial", Font.BOLD, 15));
+		productCountField = new JTextField( String.valueOf(userVo.getProducts()));
 		productCountField.setEditable(false);
+		productCountField.setBorder(null);
+		productCountField.setFont(new Font("Arial", Font.BOLD, 15));
 		
 		// add fields
-		userInfoPanel.add(new JLabel("ID"));
+		JLabel idLabel = new JLabel("아이디 : ");
+//		idLabel.setFont(new Font("Arial", Font.BOLD, 15));
+		JLabel ratingLabel = new JLabel("등급 : ");
+//		ratingLabel.setFont(new Font("Arial", Font.BOLD, 15));
+		JLabel countLabel = new JLabel("내 상품 : ");
+//		countLabel.setFont(new Font("Arial", Font.BOLD, 15));
+		userInfoPanel.add(idLabel);
 		userInfoPanel.add(nameField);
-		userInfoPanel.add(new JLabel("Rating"));
+		userInfoPanel.add(ratingLabel);
 		userInfoPanel.add(ratingField);
-		userInfoPanel.add(new JLabel("Total Selling"));
+		userInfoPanel.add(countLabel);
 		userInfoPanel.add(productCountField);
 		
 		// add panel to frame

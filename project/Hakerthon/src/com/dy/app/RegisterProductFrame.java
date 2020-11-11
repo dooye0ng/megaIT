@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class RegisterProductFrame extends JFrame {
-	private static final int APP_WIDTH = 500;
+	private static final int APP_WIDTH = 700;
 	private static final int APP_HEIGHT = 600;
 	private RegisterProductFrame window;
 	private Socket soc;
@@ -29,7 +29,7 @@ public class RegisterProductFrame extends JFrame {
 	private ProductVo productVo;
 	private AppDao appDao;
 	private JPanel titlePanel, contentPanel, btnPanel;
-	private JTextField titleField, priceField;
+	private JTextField titleField, priceField, imgNameField;
 	private JTextArea contentArea;
 	private JButton regBtn, backBtn;
 	private ObjectOutputStream oos;
@@ -110,6 +110,8 @@ public class RegisterProductFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String name = titleField.getText().trim();
 				String content = contentArea.getText().trim();
+				String imgName = imgNameField.getText().trim();
+				System.out.println(imgName);
 				int price = 0;
 				
 				try {
@@ -123,6 +125,7 @@ public class RegisterProductFrame extends JFrame {
 					productVo.setPrice(price);
 					productVo.setContent(content);
 					productVo.setUser_id(userVo.getId());
+					productVo.setImg_name(imgName);
 					
 					bos = new BufferedOutputStream(soc.getOutputStream());
 					oos = new ObjectOutputStream(bos);
@@ -170,6 +173,9 @@ public class RegisterProductFrame extends JFrame {
 		titlePanel.add(titleField);
 		titlePanel.add(new JLabel("Price : "));
 		titlePanel.add(priceField);
+		titlePanel.add(new JLabel("Image Name : "));
+		imgNameField = new JTextField(15);
+		titlePanel.add(imgNameField);
 		
 		add(titlePanel, BorderLayout.NORTH);
 	}

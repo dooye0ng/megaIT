@@ -6,7 +6,14 @@ public class UserVo {
 	private String password;
 	private String rating;
 	private int products;
+	private int sold;
 	
+	public int getSold() {
+		return sold;
+	}
+	public void setSold(int sold) {
+		this.sold = sold;
+	}
 	public int getProducts() {
 		return products;
 	}

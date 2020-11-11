@@ -1,14 +1,15 @@
 package com.dy.app;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -75,14 +76,32 @@ public class MainFrame extends JFrame{
 	
 	public void setTimeField() {
 		timeField = new JTextField(15);
-		timeField.setText("current time");
 		timeField.setEditable(false);
+		timeField.setBorder(null);
+		timeField.setFont(new Font("Arial", Font.BOLD, 15));
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					SimpleDateFormat sdf = new SimpleDateFormat("[yyyy-MM-dd] HH:mm:ss");
+					while(true) {
+						String time = sdf.format(System.currentTimeMillis());
+						timeField.setText(time);
+						Thread.sleep(1000);
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 
 	public void setuserNameField() {
 		userNameField = new JTextField(15);
 		userNameField.setText("ID : " + userVo.getId());
 		userNameField.setEditable(false);
+		userNameField.setBorder(null);
+		userNameField.setFont(new Font("Arial", Font.BOLD, 15));
 	}
 	
 	public JPanel setItemPanel(ProductVo product) {
@@ -110,6 +129,16 @@ public class MainFrame extends JFrame{
 		itemTopPanel.add(itemTitleField);
 		itemTopPanel.add(new JLabel("작성일자 : "));
 		itemTopPanel.add(registerDateField);
+		JButton imgBtn = new JButton("Image");
+		imgBtn.setName(product.getReg_date());
+		imgBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton btn = (JButton)e.getSource();
+				new ImageFrame(appDao, btn.getName());
+			}
+		});
+		itemTopPanel.add(imgBtn);
 		itemPanel.add(itemTopPanel, BorderLayout.NORTH);
 		
 		// CENTER
@@ -119,13 +148,16 @@ public class MainFrame extends JFrame{
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		itemPanel.add(contentScroll, BorderLayout.CENTER);
 		
-		itemPanel.setPreferredSize(new Dimension(900, 300));
+		itemPanel.setPreferredSize(new Dimension(900, 200));
 		return itemPanel;
 	}
 
 	public void setMainPanel() throws SQLException {
 		int row = appDao.getAllProductsCount();
 		mainPanel = new JPanel();
+		if(row < 5) {
+			row = 5;
+		}
 		mainPanel.setLayout(new GridLayout(row, 0));
 		
 		ArrayList<ProductVo> productList = appDao.getAllProducts();
@@ -142,14 +174,15 @@ public class MainFrame extends JFrame{
 //		add(mainPanel, BorderLayout.CENTER);
 	}
 	
-	public void refreshWindow() {
+	public void refreshWindow() throws SQLException {
+		setUserVo(appDao.updateUserVoById(userVo.getId()));
 		dispose();
 		new MainFrame(name, soc, userVo, appDao);
 	}
 
 	public void setTopBarPanel() {
 		topBarPanel = new JPanel();
-		topBarPanel.setLayout(new GridLayout(1, 4));
+		topBarPanel.setLayout(new FlowLayout());
 		setuserNameField();
 		setTimeField();
 		refreshBtn = new JButton("Refresh");
@@ -158,12 +191,19 @@ public class MainFrame extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				refreshWindow();
+				try {
+					refreshWindow();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
+		
 		userRatingField = new JTextField(15);
 		userRatingField.setText("RATING : " + userVo.getRating());
 		userRatingField.setEditable(false);
+		userRatingField.setBorder(null);
+		userRatingField.setFont(new Font("Arial", Font.BOLD, 15));
 		
 		topBarPanel.add(userNameField);
 		topBarPanel.add(userRatingField);
@@ -200,6 +240,9 @@ public class MainFrame extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?") != 0) {
+					return;
+				}
 				signOut();
 			}
 		});
