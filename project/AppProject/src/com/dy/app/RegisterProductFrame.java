@@ -87,7 +87,6 @@ public class RegisterProductFrame extends JFrame {
 		regBtn = new JButton("Register");
 		backBtn = new JButton("Close");
 		
-//		back button
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -95,7 +94,6 @@ public class RegisterProductFrame extends JFrame {
 			}
 		});
 		
-//		register button
 		regBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

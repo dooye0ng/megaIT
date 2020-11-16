@@ -150,7 +150,6 @@ public class MainFrame extends JFrame{
 		itemPanel = new JPanel();
 		itemPanel.setLayout(new BorderLayout());
 		
-		// NORTH
 		JPanel itemTopPanel = new JPanel();
 		itemTopPanel.setLayout(new FlowLayout());
 		itemUserField = new JTextField(10);
@@ -196,7 +195,6 @@ public class MainFrame extends JFrame{
 		itemTopPanel.add(msgBtn);
 		itemPanel.add(itemTopPanel, BorderLayout.NORTH);
 		
-		// CENTER
 		itemContentArea = new JTextArea(product.getContent());
 		itemContentArea.setEditable(false);
 		JScrollPane contentScroll = new JScrollPane(itemContentArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -215,7 +213,6 @@ public class MainFrame extends JFrame{
 		int row = appDao.getAllProductsCount();
 		mainPanel = new JPanel();
 		
-		// for sizing each panel
 		if(row < 5) {
 			row = 5;
 		}

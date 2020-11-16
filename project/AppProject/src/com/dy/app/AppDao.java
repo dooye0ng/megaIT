@@ -164,15 +164,6 @@ public class AppDao {
 		return ps.executeUpdate();
 	}
 	
-//	public int getProducts(String id) throws SQLException {
-//		String sql = "SELECT products FROM app_users WHERE id = ?";
-//		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setString(1, id);
-//		ResultSet rs = ps.executeQuery();
-//		rs.next();
-//		return rs.getInt(1);	
-//	}
-	
 	/**
 	 * Returns total amount of products belongs to user who identified with id
 	 * <p>
