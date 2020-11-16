@@ -25,7 +25,8 @@
 ### 프로젝트 기간
 2020년 11월 6일 ~ 2020년 11월 13일 (8일)
 
-### 애플리케이션 시연 영상
+### 애플리케이션 시연 영상  
+- (Youtube Link)
 [![jungo jungo](https://img.youtube.com/vi/G03FJ8pYfRg/0.jpg)](https://www.youtube.com/watch?v=G03FJ8pYfRg) 
 
 ### 애플리케이션 사용 화면
