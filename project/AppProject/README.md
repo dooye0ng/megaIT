@@ -19,8 +19,8 @@
 
 
 ### 개발 환경
-- 언어 : Java(eclipse - GUI : swing)
-- 데이터베이스 : MariaDB
+- 언어 : Java 1.8 (eclipse - GUI : swing)
+- 데이터베이스 : MariaDB 10.5
 
 ### 프로젝트 기간
 2020년 11월 6일 ~ 2020년 11월 13일 (8일)
