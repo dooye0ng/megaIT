@@ -16,9 +16,39 @@
 
 등의 기능을 포함하고 있습니다.
 
+
+
 ### 개발 환경
 - 언어 : Java(eclipse - GUI : swing)
 - 데이터베이스 : MariaDB
 
 ### 프로젝트 기간
 2020년 11월 6일 ~ 2020년 11월 13일 (8일)
+
+### 애플리케이션 사용 화면
+- 로그인 화면  
+![login_page](caps/login.png)  
+  
+- 회원가입 화면  
+![sign_up](caps/sign_up.png)  
+  
+- 메인 화면  
+![main_page](caps/main_page.png)  
+  
+- 상품 등록 화면  
+![sell](caps/register_product.png)  
+  
+- 프로필 정보 확인 화면  
+![profile](caps/profile.png)
+
+- 쪽지 보내기 화면  
+![send_msg](caps/send_message.png)  
+  
+- 사진 확인 화면  
+![img](caps/image_view.png)  
+  
+- 쪽지함 확인 화면  
+![msg_box](caps/message_box.png)  
+  
+
+
