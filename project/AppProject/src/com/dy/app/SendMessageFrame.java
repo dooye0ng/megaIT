@@ -62,7 +62,6 @@ public class SendMessageFrame extends JFrame{
 	 * Set all the panels and add them to frame
 	 */
 	public void setPanels() {
-		// NORTH
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new FlowLayout());
 		JTextField titleField = new JTextField("To. " + productVo.getUser_id());
@@ -71,11 +70,9 @@ public class SendMessageFrame extends JFrame{
 		topPanel.add(titleField);
 		add(topPanel, BorderLayout.NORTH);
 		
-		// CENTER
 		JTextArea contentArea = new JTextArea();
 		add(contentArea, BorderLayout.CENTER);
-		
-		// SOUTH
+
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
 		JButton sendBtn, closeBtn;

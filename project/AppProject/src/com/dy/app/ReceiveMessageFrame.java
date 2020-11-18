@@ -52,7 +52,6 @@ public class ReceiveMessageFrame extends JFrame{
 	 * Set all the panels and add them to frame
 	 */
 	public void setPanels() {
-		// NORTH
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new FlowLayout());
 		JTextField titleField = new JTextField(15);
@@ -62,14 +61,12 @@ public class ReceiveMessageFrame extends JFrame{
 		topPanel.add(titleField);
 		add(topPanel, BorderLayout.NORTH);
 		
-		// CENTER
 		contentArea = new JTextArea();
 		contentArea.setEditable(false);
 		JScrollPane scroll = new JScrollPane(contentArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		add(scroll, BorderLayout.CENTER);
-		
-		// SOUTH
+
 		JPanel bottomPanel = new JPanel();
 		JButton closeBtn = new JButton("Close");
 		JButton deleteBtn = new JButton("Clean History");

@@ -84,7 +84,6 @@ public class ProfileFrame extends JFrame{
 		btnsPanel = new JPanel();
 		btnsPanel.setLayout(new FlowLayout());
 		
-		// set buttons
 		cancelBtn = new JButton("Cancel");
 		cancelBtn.addActionListener(new ActionListener() {
 			@Override
@@ -92,10 +91,10 @@ public class ProfileFrame extends JFrame{
 				dispose();
 			}
 		});
-		// add buttons
+
 		btnsPanel.add(cancelBtn);
 		
-		// add panel to frame
+
 		add(btnsPanel, BorderLayout.SOUTH);
 	}
 	/**
@@ -114,7 +113,6 @@ public class ProfileFrame extends JFrame{
 		JPanel itemPanel = new JPanel();
 		itemPanel.setLayout(new BorderLayout());
 		
-		// NORTH
 		JPanel itemTopPanel = new JPanel();
 		itemTopPanel.setLayout(new FlowLayout());
 		JTextField itemUserField = new JTextField(10);
@@ -137,14 +135,12 @@ public class ProfileFrame extends JFrame{
 		itemTopPanel.add(registerDateField);
 		itemPanel.add(itemTopPanel, BorderLayout.NORTH);
 		
-		// CENTER
 		JTextArea itemContentArea = new JTextArea(product.getContent());
 		itemContentArea.setEditable(false);
 		JScrollPane contentScroll = new JScrollPane(itemContentArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		itemPanel.add(contentScroll, BorderLayout.CENTER);
 		
-		// SOUTH
 		JPanel southPanel = new JPanel();
 		southPanel.setLayout(new FlowLayout());
 		JButton soldBtn, delBtn;
@@ -231,7 +227,6 @@ public class ProfileFrame extends JFrame{
 		userInfoPanel = new JPanel();
 		userInfoPanel.setLayout(new FlowLayout());
 		
-		// set fields
 		nameField = new JTextField( userVo.getId());
 		nameField.setEditable(false);
 		nameField.setBorder(null);
@@ -244,8 +239,7 @@ public class ProfileFrame extends JFrame{
 		productCountField.setEditable(false);
 		productCountField.setBorder(null);
 		productCountField.setFont(new Font("Arial", Font.BOLD, 15));
-		
-		// add fields
+
 		JLabel idLabel = new JLabel("아이디 : ");
 		JLabel ratingLabel = new JLabel("등급 : ");
 		JLabel countLabel = new JLabel("내 상품 : ");
@@ -256,7 +250,6 @@ public class ProfileFrame extends JFrame{
 		userInfoPanel.add(countLabel);
 		userInfoPanel.add(productCountField);
 		
-		// add panel to frame
 		add(userInfoPanel, BorderLayout.NORTH);
 	}
 	

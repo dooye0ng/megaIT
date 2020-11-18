@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-
 public class RegisterUserFrame extends JFrame{
 	private static final String BLANK = "";
 	private static final int APP_WIDTH = 400;
