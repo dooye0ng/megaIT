@@ -18,12 +18,12 @@ public class Master {
 			}
 		};
 		
-		Thread slave;
+		Thread[] slave = new Thread[10];
 		for(int i=0; i<10; i++) {
 			try {
-				slave = new Thread(new Slave(cal));
+				slave[i] = new Thread(new Slave(cal));
 				System.out.print("Slave " + (i+1) + " >> ");
-				slave.start();
+				slave[i].start();
 				Thread.sleep(((int)(Math.random() * 4) + 1) * 1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
